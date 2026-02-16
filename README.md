@@ -71,8 +71,27 @@ Traditional traffic prediction often treats an entire city as a single dataset (
 
 ## How it Works
 
-1.  **Data Generation**: The system generates thousands of traffic samples with localized rules.
-2.  **Model Training**:
-    *   **Global Model**: Learns one equation for the whole map ($y = mx + b$). Good generalist, but misses local details.
-    *   **Spatial Model**: Learns local equations for every point on the map. It understands that "5 PM" means "slow" in Downtown but "fast" in Outskirts.
-3.  **Visualization**: The results are rendered using a custom HTML5 canvas engine and Matplotlib dashboards.
+The core of this project relies on **Geographically Weighted Regression (GWR)**, implemented via the **`gwlearn`** library (a Scikit-Learn compatible wrapper for `libpysal`).
+
+1.  **Data Generation**:
+    The system procedurally generates a synthetic city with non-stationary traffic rules. For example:
+    - **Downtown**: High base congestion, severe evening rush hour.
+    - **Suburbs**: Low congestion, moderate morning rush hour.
+    - **Industrial**: Constant heavy truck traffic.
+
+2.  **Model Training (Global vs. Spatial)**:
+    - **Global Model (`sklearn.LinearRegression`)**:
+      Trains a single linear equation on the entire dataset. It averages out the differences between zones, leading to high error rates in complex areas.
+      $$ y = \beta_0 + \beta_1 x_1 + ... + \epsilon $$
+
+    - **Spatial Model (`gwlearn.GWLinearRegression`)**:
+      This is where **`gwlearn`** shines. It fits a separate regression model for *every single point in space*. When predicting traffic at Location $u$, it weights training samples based on their distance to $u$ using a kernel function (e.g., Bisquare or Gaussian).
+      $$ y(u) = \beta_0(u) + \beta_1(u) x_1 + ... + \epsilon $$
+      
+      This allows the model to "learn" that the correlation between *Time of Day* and *Traffic Speed* is negative in the city center (rush hour slows you down) but might be positive in residential areas during the day.
+
+3.  **Visualizing the "Brain"**:
+    The web app (`app.py`) serves these predictions to a JavaScript frontend.
+    - **Red cars** follow the Global Model's predictions (often speeding in congested zones).
+    - **Blue cars** follow the **`gwlearn`** Spatial Model's predictions (slowing down appropriately in traffic).
+    - Heatmaps show the **local $R^2$** values, proving that the spatial model accurately captures the unique dynamics of each neighborhood.

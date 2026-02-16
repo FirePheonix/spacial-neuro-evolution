@@ -12,8 +12,9 @@
   <img src="https://img.shields.io/badge/Matplotlib-Visualization-ffffff?style=for-the-badge&logo=matplotlib&logoColor=black" />
 </p>
 
-<img width="1911" height="937" alt="image" src="https://github.com/user-attachments/assets/477b9bc8-e14c-48b5-8fbe-b4f2e6dc4eed" />
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c67c61bb-9f2d-448b-8268-89072f96c811" />
+</p>
 
 
 A neuroevolution-based traffic simulation and prediction engine where autonomous vehicles learn to navigate from one point to another without going off the road while adapting to spatial and temporal traffic dynamics. The vehicles evolve their driving behavior through neuroevolution for path optimization, while a spatially-aware intelligence layer powered by Geographically Weighted Regression (GWR) using gwlearn(https://github.com/pysal/gwlearn) enables them to dynamically adjust speed and movement based on zone type, time of day, and local traffic conditions. By comparing global models with spatially-aware models, the project demonstrates how location-specific intelligence significantly improves autonomous navigation in non-stationary urban environments.

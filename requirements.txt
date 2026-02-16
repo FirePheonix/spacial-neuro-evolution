@@ -29,3 +29,6 @@ pillow>=10.0.0
 pygame>=2.5.0  # For interactive simulation
 imageio>=2.31.0  # For creating animations
 opencv-python>=4.8.0  # For video processing
+
+# Deployment
+gunicorn>=21.2.0

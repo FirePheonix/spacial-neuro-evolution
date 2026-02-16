@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/Flask-Web_App-black?style=for-the-badge&logo=flask&logoColor=white" />
   <img src="https://img.shields.io/badge/scikit--learn-ML-orange?style=for-the-badge&logo=scikit-learn&logoColor=white" />
   <img src="https://img.shields.io/badge/gwlearn-Spatial_Model-green?style=for-the-badge" />
@@ -22,7 +22,7 @@ A neuroevolution-based traffic simulation and prediction engine where autonomous
 ## Installation
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.11+
 - Git
 
 ### Quick Start
